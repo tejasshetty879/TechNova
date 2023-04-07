@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
+import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { getUserDetails, updateUsers } from "../actions/userActions";
-import {USER_UPDATE_RESET} from '../constants.userConstats'
+import {USER_UPDATE_RESET} from '../constants/userConstants'
+//import { useNavigate } from "react-router-dom";
 
 const userEditScreen = ({ match, history }) => {
     const userId = match.params.id
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
   
 
   const dispatch = useDispatch();
 
-  const userDetails = useSelector((state) => state.userRegister);
-  const { loading, error, user } = userDetails;
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading, error, user } = userDetails
   // const { search } = useLocation();
   // const redirectInUrl = new URLSearchParams(search).get("querystringkey");
   // const redirect = redirectInUrl ? redirectInUrl : "/";
@@ -50,7 +51,8 @@ const userEditScreen = ({ match, history }) => {
     e.preventDefault();
     dispatch(updateUsers({_id: userId,name,email,isAdmin}))
    
-  };
+  }
+
   return (
     <>
       <Link to='/admin/userlist' className="btn btn-light my-3">
@@ -59,7 +61,7 @@ const userEditScreen = ({ match, history }) => {
       <FormContainer>
       <br></br>
       <h4>Edit User</h4>
-      {loadingUpdate && <loader />}
+      {loadingUpdate && <Loader />}
       {ErrorUpadate  && <Message variant='danger' >{ErrorUpadate}</Message>}
       {loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : (
            <Form onSubmit={submitHandler}>
@@ -92,7 +94,7 @@ const userEditScreen = ({ match, history }) => {
              <Form.Check
                type="checkbox"
                label="isAdmin"
-               chaecked={isAdmin}
+               checked={isAdmin}
                onChange={(e) => setIsAdmin(e.target.checked)}
              ></Form.Check>
            </Form.Group>

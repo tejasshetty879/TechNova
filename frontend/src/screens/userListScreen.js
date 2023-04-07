@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { LinkContainer } from "react-router-bootstrap";
 import { Table, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
-import { listUsers, deleteUser} from '../action/userActions';
+import { listUsers, deleteUser} from '../actions/userActions';
 
 const userListScreen = ({history}) => {
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ const userListScreen = ({history}) => {
        
     }, [dispatch, history, successDelete,userInfo]);
 
-    const deleteHandler = {id} => {
+    const deleteHandler = (id) => {
         if(window.confirm('Are you sure')){
             dispatch(deleteUser(id))
         }
@@ -36,10 +36,10 @@ const userListScreen = ({history}) => {
 
     return (
         <>
-         <h1>User</h1>
+         <h1>Users</h1>
     {loading ? (<Loader/> ): error ? ( <Message variant='danger'>{error}</Message>)
          : (
-            <Table stripped bordered hover responsive class name='table-sem'>
+            <Table stripped bordered hover responsive class name='table-sm'>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -66,7 +66,7 @@ const userListScreen = ({history}) => {
                                  )}
                             </td>
                             <td>
-                                <LinkContainer to={'/admin/user/${user._id}/edit'}>
+                                <LinkContainer to={`/admin/user/${user._id}/edit`}>
                                     <Button variant="light" className="btn-sm">
                                         <i className="fas fa-edit"></i>
                                     </Button>

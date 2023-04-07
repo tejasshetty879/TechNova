@@ -25,18 +25,18 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Routes>
-            <Route path="/order/:id" element={<OrderScreen />} />
-            <Route path="/appointment" element={<AppointmentScreen />} />
-            <Route path="/payment" element={<PaymentScreen />} />
-            <Route path="/placeorder" element={<PlaceOrderScreen />} />
-            <Route path="/login" element={<LoginScreen />} />
-            <Route path="/register" element={<RegisterScreen />} />
-            <Route path="/profile" element={<ProfileScreen />} />
-            <Route path="/product/:id" element={<ProductScreen />} />
-            <Route path="/cart/:id?" element={<CartScreen />} />
-            <Route path='/admin/userlist' element={<userListScreen />}/>
-            <Route path='/admin/user/:id/edit' element={<userEditScreen />}/>
-            <Route path="/" element={<HomeScreen />} />
+            <Route path="/order/:id" Component={OrderScreen } />
+            <Route path="/appointment" Component={AppointmentScreen } />
+            <Route path="/payment" Component={PaymentScreen } />
+            <Route path="/placeorder" Component={PlaceOrderScreen } />
+            <Route path="/login"  Component={LoginScreen } />
+            <Route path="/register" Component={RegisterScreen } />
+            <Route path="/profile" Component={ProfileScreen } />
+            <Route path="/product/:id" Component={ProductScreen } />
+            <Route path="/cart/:id?" Component={CartScreen } />
+            <Route path="/admin/userlist" Component={userListScreen }/>
+            <Route path="/admin/user/:id/edit" Component={userEditScreen }/>
+            <Route path="/" Component={HomeScreen } />
           </Routes>
         </Container>
       </main>
